@@ -1,0 +1,16 @@
+export const menuItems = [
+  { icon: '☰', label: 'DESTAQUES', active: true },
+  { icon: '👤', label: 'INDIQUE UM AMIGO' },
+  { icon: '🎓', label: 'ACADÊMICO', submenu: true },
+  { icon: '$', label: 'FINANCEIRO', submenu: true },
+  { icon: '🎧', label: 'ATENDIMENTO', submenu: true },
+  { icon: '📄', label: 'DOCUMENTOS' },
+  { icon: '💬', label: 'COMUNICAÇÃO', submenu: true },
+  { icon: '📚', label: 'BASE DE CONHECIMENTO' },
+  { icon: '🔬', label: 'INICIAÇÃO CIENTÍFICA' },
+  { icon: '▶', label: 'UNIEDU 2020', submenu: true },
+  { icon: '📋', label: 'EXTENSÃO...', submenu: true },
+  { icon: '📋', label: 'CURSOS LIVRES', submenu: true },
+  { icon: '📖', label: 'BIBLIOTECA' },
+  { icon: '📖', label: 'PUBLICAÇÕES LEGAIS' },
+];
