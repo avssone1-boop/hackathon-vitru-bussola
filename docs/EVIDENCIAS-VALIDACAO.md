@@ -30,6 +30,23 @@
 | Camadas | Cabeçalho 100, botão flutuante 600, backdrop 700, superfície 800, diálogo 900 e toast 1000 | Aprovado |
 | Regressão do fluxo | Oito etapas preservadas e nenhum erro registrado no console durante o teste | Aprovado |
 
+## Direção premium — opção 3
+
+A opção visual escolhida foi aplicada como refinamento incremental, sem alterar a metodologia, os dados demonstrativos ou a arquitetura das oito etapas.
+
+| Critério | Evidência | Resultado |
+|---|---|---|
+| Fidelidade à referência | Comparação lado a lado entre o conceito aprovado e a etapa 7 implementada | Aprovado |
+| Hierarquia | Título em duas linhas, texto de apoio curto e duas recomendações agrupadas | Aprovado |
+| Navegação lateral | Fundo lavanda claro, etapas concluídas com ícone e etapa atual marcada por linha amarela | Aprovado |
+| Recomendações | Exatamente dois apoios em uma única superfície, com divisor e ações explícitas | Aprovado |
+| Consentimento | Aviso apresentado como faixa informativa antes da ação de continuidade | Aprovado |
+| Ações | Voltar com baixo destaque e “Revisar e continuar” como CTA primário | Aprovado |
+| Alvos interativos | Todos os controles visíveis da etapa 7 medem pelo menos 44 px de altura | Aprovado |
+| Ícones e tipografia | Inter e Material Symbols carregados; foco visível preservado | Aprovado |
+| Confirmação e limite | Diálogo exibido antes da inclusão; total máximo validado em duas recomendações | Aprovado |
+| Console | Nenhum erro durante navegação, privacidade e confirmação de apoio | Aprovado |
+
 ## Telas verificadas
 
 1. “Vamos começar pela sua realidade de hoje”
@@ -50,6 +67,9 @@
 - [Etapa 8 — acompanhamento](evidencias/etapa-8-acompanhamento.png)
 - [Painel gestor agregado](evidencias/painel-gestor-agregado.png)
 - [Confirmação antes de adicionar apoio](evidencias/refinamento-apoio-confirmacao.png)
+- [Referência escolhida — opção 3](design/conceito-bussola-premium-opcao-3.png)
+- [Etapa 7 — implementação premium final](evidencias/bussola-premium-etapa-7-final-clean.png)
+- [Comparação final lado a lado](evidencias/bussola-premium-comparacao-final.png)
 
 ## Conceito visual gerado
 
