@@ -13,7 +13,22 @@
 | Conclusão da primeira ação | Aprovada; status mudou para “Concluída” e pôde ser reaberto |
 | Confirmação do plano | Aprovada; acompanhamento mudou para “Seu plano está ativo” |
 | Painel gestor | Aprovado; visão agregada, uma tabela e nenhum texto de risco de desistência |
-| Entrada pelo AVA | Aprovada; CTA “Bússola de Carreira — Construa seu plano em 8 etapas” |
+| Entrada pelo AVA | Aprovada; botão fixo “Bússola de Carreira — Preciso de apoio” |
+
+## Refinamentos incrementais do MVP
+
+| Critério de aceite | Evidência | Resultado |
+|---|---|---|
+| Entrada integrada ao portal | Botão fixo “Bússola de Carreira — Preciso de apoio”, com `position: fixed`, 220 × 58 px no desktop e `z-index: 600` | Aprovado |
+| Consentimento antes da jornada | Diálogo informa finalidade, ausência de classificação/predição e oferece “Continuar”, “Agora não” e explicação de dados | Aprovado; não adiciona etapa à metodologia |
+| Limite de recomendações | A etapa 7 renderiza exatamente duas opções priorizadas | Aprovado |
+| Confirmação de apoio | O apoio só entra no plano após o diálogo “Confirmar solicitação de apoio?” | Aprovado |
+| Ausência de envio real | Interface informa antes e depois da confirmação que nenhum contato foi enviado | Aprovado |
+| Privacidade acessível | Área aberta pelo cabeçalho descreve dados, finalidade, limites e armazenamento local | Aprovado |
+| Navegação por teclado | Foco inicial no diálogo, ciclo de `Tab`/`Shift+Tab`, fechamento por `Esc` e retorno de foco | Aprovado |
+| Tamanho de alvos | Botões principais usam altura mínima de 46 px; entrada flutuante usa 52–58 px | Aprovado |
+| Camadas | Cabeçalho 100, botão flutuante 600, backdrop 700, superfície 800, diálogo 900 e toast 1000 | Aprovado |
+| Regressão do fluxo | Oito etapas preservadas e nenhum erro registrado no console durante o teste | Aprovado |
 
 ## Telas verificadas
 
@@ -34,6 +49,7 @@
 - [Etapa 6 — primeira ação](evidencias/etapa-6-proximo-passo.png)
 - [Etapa 8 — acompanhamento](evidencias/etapa-8-acompanhamento.png)
 - [Painel gestor agregado](evidencias/painel-gestor-agregado.png)
+- [Confirmação antes de adicionar apoio](evidencias/refinamento-apoio-confirmacao.png)
 
 ## Conceito visual gerado
 

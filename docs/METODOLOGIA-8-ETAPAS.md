@@ -14,7 +14,7 @@ A Bússola ajuda o estudante EAD a transformar dúvidas sobre carreira e perman�
 | 4. Meu plano | Organizar uma rota viável | Plano com aprendizado, experiência e conexão | Painel “Por que recomendamos isso?” ligado às respostas |
 | 5. Escolher etapas | Priorizar o que cabe na rotina | Uma ou mais ações selecionadas | Checklist editável, tempo estimado e recursos opcionais |
 | 6. Próximo passo | Transformar intenção em ação | Ação concreta e data escolhida | Edição, conclusão/reabertura e foco na janela de 30 dias |
-| 7. Pessoas e apoio | Reduzir isolamento e facilitar suporte | Preferências de apoio com consentimento | Tutoria, apoio acadêmico e comunidade; nenhum contato automático |
+| 7. Pessoas e apoio | Reduzir isolamento e facilitar suporte | Até duas recomendações de apoio, com confirmação | Opções priorizadas; nenhum contato automático no protótipo |
 | 8. Acompanhamento | Revisar e recalibrar a rota | Progresso, check-in e confirmação do plano | Edição, recomeço e ativação voluntária do plano |
 
 ## Produtos e serviços promovidos no MVP
@@ -49,6 +49,8 @@ Métricas auxiliares:
 5. Painel gestor agregado, voltado a melhorar serviços e jornada.
 6. Contato humano somente após escolha e consentimento.
 7. Dados do protótipo são demonstrativos e não representam estudantes reais.
+8. Consentimento é solicitado antes da jornada e pode ser recusado sem criar uma nona etapa.
+9. Solicitações de apoio exigem confirmação explícita e o protótipo informa que nenhum contato real foi enviado.
 
 ## Aplicação técnica
 
