@@ -1,52 +1,59 @@
-# Bússola de Carreira — Vitru
+# Bússola — Vitru
 
-MVP para ajudar estudantes EAD a transformar dúvidas de carreira em um objetivo, um plano viável e uma primeira ação. A metodologia foi aplicada em oito etapas, com recomendação explicável, controle do estudante e acompanhamento agregado.
+MVP de inteligência motivacional para estudantes EAD. A versão atual transforma uma conversa de dez perguntas curtas em um perfil de apoio explicável, uma próxima ação e uma experiência personalizada no portal — sem teste clínico, score de risco ou previsão de evasão.
 
-## O que foi implementado
+## Frontend v2
 
-- jornada completa do aluno em oito etapas;
-- comparação de caminhos profissionais com justificativas;
-- objetivo, etapas e próxima ação editáveis;
-- recomendações de cursos, projetos, mentoria e apoio;
-- acompanhamento da ativação do plano em até 30 dias;
-- painel gestor agregado, sem score individual de risco;
-- identidade visual Vitru em roxo `#1D1934` e amarelo `#FFC629`;
-- evidências visuais e documentação da metodologia.
+- uma pergunta por tela, progresso visível e respostas preservadas ao voltar;
+- quatro perfis de apoio explicáveis e circunstanciais;
+- devolutiva com motivadores, barreiras e recomendações relacionadas às respostas;
+- definição de um primeiro passo possível;
+- home personalizada e assistente contextual;
+- versões desktop e mobile acessíveis;
+- identidade visual Vitru em ameixa, branco, lavanda e amarelo de precisão.
 
-## Executar localmente
-
-O frontend não requer instalação de dependências:
+## Executar o frontend atual
 
 ```bash
-python3 -m http.server 4173 --directory ava-mock
+cd frontend
+pnpm install
+pnpm dev
 ```
 
-Acesse:
+Acesse `http://127.0.0.1:4173/#/onboarding`.
 
-- AVA: `http://127.0.0.1:4173/`
-- Bússola: `http://127.0.0.1:4173/bussola.html`
-- Painel agregado: `http://127.0.0.1:4173/gestor.html`
+Para validar a entrega:
 
-É possível abrir diretamente uma etapa para demonstração, por exemplo: `bussola.html?etapa=4`.
+```bash
+pnpm typecheck
+pnpm build
+pnpm test:sites
+```
+
+## Protótipo anterior
+
+O protótipo estático de oito etapas permanece em `ava-mock/bussola-legacy.html` apenas como histórico. `ava-mock/bussola.html` passa a encaminhar para a versão v2 publicada.
 
 ## Estrutura
 
 ```text
-ava-mock/              Frontend HTML, CSS e JavaScript
+frontend/              Aplicação React, TypeScript e Vite
+ava-mock/              Portal demonstrativo, legado e bundle público da v2
 backend/               API Express herdada da base original
-docs/                  Metodologia, conceito e evidências
+docs/                  Brief, referências, metodologia e evidências
 vercel.json            Deploy estático do diretório ava-mock
 ```
 
 ## Documentação
 
-- [Metodologia em 8 etapas](docs/METODOLOGIA-8-ETAPAS.md)
+- [Brief da metodologia atual](docs/referencias/BUSSOLA_CODEX_FRONTEND_BRIEF.md)
 - [Evidências de validação](docs/EVIDENCIAS-VALIDACAO.md)
-- [Conceito visual](docs/design/conceito-bussola-8-etapas.png)
+- [Design QA](design-qa.md)
+- [Metodologia anterior em 8 etapas](docs/METODOLOGIA-8-ETAPAS.md)
 
 ## Métrica principal do MVP
 
-**Percentual de estudantes que concluem ao menos uma etapa do plano em até 30 dias.**
+**Percentual de estudantes que concluem a primeira ação recomendada em até 7 dias.**
 
 ## Observações
 
