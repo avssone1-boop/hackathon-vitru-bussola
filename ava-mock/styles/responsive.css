@@ -1,0 +1,23 @@
+@media (max-width: 1024px) {
+  .dashboard-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-220px);
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .dashboard-row {
+    grid-template-columns: 1fr;
+  }
+}

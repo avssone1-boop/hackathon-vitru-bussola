@@ -1,0 +1,202 @@
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.semester-badge {
+  font-size: 11px;
+  background: #e8e8e8;
+  padding: 2px 8px;
+  border-radius: 3px;
+  color: #666;
+  cursor: pointer;
+}
+
+.count {
+  font-weight: 400;
+  color: #888;
+}
+
+.ver-todos {
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+  cursor: pointer;
+}
+
+.ver-todos:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+.card-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.card-toggle:hover {
+  color: #333;
+}
+
+.card-body {
+  padding: 0 20px 20px;
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  max-height: 500px;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.card-body.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 20px;
+}
+
+/* Pendências */
+.pendencia-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 10px;
+}
+
+.pendencia-item:last-child {
+  border-bottom: none;
+}
+
+.pendencia-icon {
+  font-size: 16px;
+}
+
+.pendencia-text {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.badge-red {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.pendencia-action {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.pendencia-action:hover {
+  background: #f5a623;
+  color: #fff;
+  border-color: #f5a623;
+}
+
+/* Notificações */
+.notificacoes-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #aaa;
+}
+
+.empty-icon {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Avisos */
+.aviso-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  gap: 10px;
+  border-bottom: 1px solid #f5f5f5;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.aviso-item:hover {
+  background: #fafafa;
+}
+
+.aviso-item:last-child {
+  border-bottom: none;
+}
+
+.aviso-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e74c3c;
+  min-width: 75px;
+}
+
+.aviso-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-orange {
+  background: #f5a623;
+}
+
+.aviso-text {
+  font-size: 12px;
+  color: #555;
+}
