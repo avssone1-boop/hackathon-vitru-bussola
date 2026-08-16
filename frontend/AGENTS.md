@@ -15,3 +15,4 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - O assessment deve exibir uma pergunta por vez; não concentrar várias perguntas em uma única tela e não usar o trilho antigo de oito etapas dentro da avaliação.
 - Trate personas como perfis de apoio explicáveis e circunstanciais, nunca como rótulos psicológicos.
 - A história principal precisa permanecer: entender → explicar → personalizar → agir → acompanhar.
+- Combine a metodologia atual com a direção premium da referência `../docs/referencias/bussola-metodologia-anterior.png`: use o trilho das cinco fases apenas nas telas de devolutiva, ação e acompanhamento; nunca reintroduza o trilho antigo de oito etapas no assessment.
