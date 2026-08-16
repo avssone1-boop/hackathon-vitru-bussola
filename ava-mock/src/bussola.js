@@ -97,7 +97,7 @@ function renderRail() {
               aria-current="${active ? 'step' : 'false'}"
               type="button"
             >
-              <span class="stage-number">${done ? '✓' : etapa.id}</span>
+              <span class="stage-number">${done ? '<span class="material-symbols-rounded" aria-hidden="true">check</span>' : etapa.id}</span>
               <span class="stage-copy"><strong>${etapa.nome}</strong><small>${etapa.apoio}</small></span>
             </button>
           `;
@@ -252,7 +252,7 @@ function renderStage4() {
           </div>
         </div>
         <aside class="explanation-card">
-          <span class="explanation-mark" aria-hidden="true">i</span>
+          <span class="explanation-mark material-symbols-rounded" aria-hidden="true">info</span>
           <h2>Por que recomendamos isso?</h2>
           <p>O plano combina suas respostas com experiências ligadas ao caminho de ${caminho.titulo}.</p>
           <ul>
@@ -285,7 +285,7 @@ function renderStage5() {
           return `
             <label class="selectable-step ${selected ? 'selected' : ''}">
               <input type="checkbox" name="passo" value="${passo.id}" ${selected ? 'checked' : ''}>
-              <span class="checkbox-ui">${selected ? '✓' : ''}</span>
+              <span class="checkbox-ui">${selected ? '<span class="material-symbols-rounded" aria-hidden="true">check</span>' : ''}</span>
               <span class="step-order">${index + 1}</span>
               <span class="step-select-copy"><span class="plan-horizon">${passo.horizonte}</span><strong>${passo.titulo}</strong><small>${passo.descricao}</small><span class="product-chip">${product}</span></span>
             </label>
@@ -332,19 +332,23 @@ function renderStage7() {
           const selected = apoioSelecionado(apoio.id);
           return `
             <article class="support-card ${selected ? 'selected' : ''}">
-              <span class="support-check">${selected ? '✓ No seu plano' : 'Recomendado'}</span>
               <span class="support-monogram">${apoio.titulo.charAt(0)}</span>
-              <strong>${apoio.titulo}</strong>
-              <p>${apoio.descricao}</p>
-              <small>${apoio.formato}</small>
-              <button class="secondary-button support-action" type="button" aria-pressed="${selected}" data-action="${selected ? 'remove-support' : 'request-support'}" data-support-id="${apoio.id}">
-                ${selected ? 'Remover do plano' : 'Selecionar apoio'}
-              </button>
+              <div class="support-copy">
+                <strong>${apoio.titulo}</strong>
+                <p>${apoio.descricao}</p>
+                <small>${apoio.formato}</small>
+              </div>
+              <div class="support-choice">
+                <span class="support-check">${selected ? '<span class="material-symbols-rounded" aria-hidden="true">check</span> No seu plano' : 'Recomendado'}</span>
+                <button class="secondary-button support-action" type="button" aria-pressed="${selected}" data-action="${selected ? 'remove-support' : 'request-support'}" data-support-id="${apoio.id}">
+                  ${selected ? 'Remover do plano' : 'Selecionar apoio'}
+                </button>
+              </div>
             </article>
           `;
         }).join('')}
       </div>
-      <div class="consent-card"><strong>Contato com consentimento</strong><p>Ao avançar, você apenas salva suas preferências. Nenhuma mensagem ou agendamento será enviado neste protótipo.</p></div>
+      <div class="consent-card"><span class="consent-icon material-symbols-rounded" aria-hidden="true">shield</span><div><strong>Contato com consentimento</strong><p>Ao avançar, você apenas salva suas preferências. Nenhuma mensagem ou agendamento será enviado neste protótipo.</p></div></div>
     </section>
   `;
 }
@@ -460,11 +464,12 @@ function podeAvancar() {
 
 function renderFooter() {
   if (state.etapa === 8) return '';
+  const nextLabel = state.etapa === 7 ? 'Revisar e continuar' : 'Continuar';
   return `
     <footer class="stage-footer">
-      <button class="secondary-button" type="button" data-action="previous" ${state.etapa === 1 ? 'disabled' : ''}>Voltar</button>
+      <button class="secondary-button" type="button" data-action="previous" ${state.etapa === 1 ? 'disabled' : ''}><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span><span>Voltar</span></button>
       <span class="footer-hint">Suas escolhas ficam salvas neste dispositivo.</span>
-      <button class="primary-button" type="button" data-action="next" ${podeAvancar() ? '' : 'disabled'}>${state.etapa === 7 ? 'Revisar meu plano' : 'Continuar'}</button>
+      <button class="primary-button" type="button" data-action="next" ${podeAvancar() ? '' : 'disabled'}><span>${nextLabel}</span><span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
     </footer>
   `;
 }
