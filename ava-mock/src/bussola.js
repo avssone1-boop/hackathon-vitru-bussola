@@ -8,17 +8,28 @@ import {
 } from './data/metodologia.js';
 
 const STORAGE_KEY = 'vitru-bussola-plano-v2';
+const CONSENT_KEY = 'vitru-bussola-consent-v1';
+const RECOMMENDATION_LIMIT = 2;
 
 function carregarEstado() {
   try {
     const salvo = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    return { ...estadoInicial, ...salvo };
+    const estado = { ...estadoInicial, ...salvo };
+    const recommendedIds = apoios.slice(0, RECOMMENDATION_LIMIT).map((apoio) => apoio.id);
+    estado.apoiosSelecionados = (estado.apoiosSelecionados || [])
+      .filter((id) => recommendedIds.includes(id))
+      .slice(0, RECOMMENDATION_LIMIT);
+    return estado;
   } catch {
     return { ...estadoInicial };
   }
 }
 
 let state = carregarEstado();
+let activeDialog = localStorage.getItem(CONSENT_KEY) === 'accepted' ? null : 'consent';
+let pendingSupportId = null;
+let dialogReturnTarget = null;
+let lastFocusSelector = null;
 const etapaNaUrl = Number(new URLSearchParams(window.location.search).get('etapa'));
 if (etapaNaUrl >= 1 && etapaNaUrl <= 8) state.etapa = etapaNaUrl;
 
@@ -57,6 +68,7 @@ function renderHeader() {
       </a>
       <div class="header-actions">
         <a class="help-link" href="#principios">Como funciona</a>
+        <button class="help-link header-button" type="button" data-action="open-privacy">Privacidade e dados</button>
         <div class="profile" aria-label="Perfil de Marina Rocha">
           <span class="profile-avatar">MR</span>
           <span class="profile-copy"><strong>Marina Rocha</strong><small>Administração</small></span>
@@ -307,30 +319,91 @@ function renderStage6() {
 }
 
 function renderStage7() {
+  const recommendedSupports = apoios.slice(0, RECOMMENDATION_LIMIT);
   return `
     <section class="stage-section">
       <div class="stage-heading">
         <span class="eyebrow">ETAPA 7 · PESSOAS E APOIO</span>
         <h1>Você não precisa fazer tudo sozinho</h1>
-        <p>Escolha as conexões que podem facilitar sua próxima etapa. O contato só acontece depois da sua confirmação.</p>
+        <p>Estas são as duas opções de apoio mais úteis para este momento. Nenhum contato acontece antes da sua confirmação.</p>
       </div>
       <div class="support-grid">
-        ${apoios.map((apoio) => {
+        ${recommendedSupports.map((apoio) => {
           const selected = apoioSelecionado(apoio.id);
           return `
-            <label class="support-card ${selected ? 'selected' : ''}">
-              <input type="checkbox" name="apoio" value="${apoio.id}" ${selected ? 'checked' : ''}>
-              <span class="support-check">${selected ? '✓ Selecionado' : 'Selecionar'}</span>
+            <article class="support-card ${selected ? 'selected' : ''}">
+              <span class="support-check">${selected ? '✓ No seu plano' : 'Recomendado'}</span>
               <span class="support-monogram">${apoio.titulo.charAt(0)}</span>
               <strong>${apoio.titulo}</strong>
               <p>${apoio.descricao}</p>
               <small>${apoio.formato}</small>
-            </label>
+              <button class="secondary-button support-action" type="button" aria-pressed="${selected}" data-action="${selected ? 'remove-support' : 'request-support'}" data-support-id="${apoio.id}">
+                ${selected ? 'Remover do plano' : 'Selecionar apoio'}
+              </button>
+            </article>
           `;
         }).join('')}
       </div>
       <div class="consent-card"><strong>Contato com consentimento</strong><p>Ao avançar, você apenas salva suas preferências. Nenhuma mensagem ou agendamento será enviado neste protótipo.</p></div>
     </section>
+  `;
+}
+
+function renderDialog() {
+  if (!activeDialog) return '';
+
+  if (activeDialog === 'consent') {
+    return `
+      <div class="dialog-backdrop">
+        <section class="bussola-dialog" role="dialog" aria-modal="true" aria-labelledby="consent-title" aria-describedby="consent-description">
+          <span class="dialog-eyebrow">ANTES DE COMEÇAR</span>
+          <h2 id="consent-title">Você decide como participar</h2>
+          <p id="consent-description">Suas respostas serão usadas para personalizar seu plano e apresentar opções de apoio. Elas não serão usadas para classificar você ou prever desistência.</p>
+          <div class="dialog-actions stacked-actions">
+            <button class="primary-button" type="button" data-action="accept-consent" data-dialog-primary>Continuar</button>
+            <button class="secondary-button" type="button" data-action="decline-consent">Agora não</button>
+            <button class="text-button" type="button" data-action="open-privacy">Como meus dados serão usados?</button>
+          </div>
+        </section>
+      </div>
+    `;
+  }
+
+  if (activeDialog === 'support') {
+    const apoio = apoios.find((item) => item.id === pendingSupportId);
+    if (!apoio) return '';
+    return `
+      <div class="dialog-backdrop">
+        <section class="bussola-dialog" role="dialog" aria-modal="true" aria-labelledby="support-dialog-title" aria-describedby="support-dialog-description">
+          <span class="dialog-eyebrow">CONFIRMAÇÃO</span>
+          <h2 id="support-dialog-title">Confirmar solicitação de apoio?</h2>
+          <p id="support-dialog-description">Nenhuma solicitação foi enviada ainda. Ao confirmar, <strong>${apoio.titulo}</strong> será adicionado ao seu plano.</p>
+          <div class="dialog-support-summary"><strong>${apoio.titulo}</strong><span>${apoio.formato}</span></div>
+          <p class="dialog-note">Neste protótipo, a confirmação apenas simula o encaminhamento.</p>
+          <div class="dialog-actions">
+            <button class="secondary-button" type="button" data-action="close-dialog">Voltar e revisar</button>
+            <button class="primary-button" type="button" data-action="confirm-support" data-dialog-primary>Confirmar</button>
+          </div>
+        </section>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="dialog-backdrop">
+      <section class="bussola-dialog" role="dialog" aria-modal="true" aria-labelledby="privacy-title" aria-describedby="privacy-description">
+        <span class="dialog-eyebrow">PRIVACIDADE E DADOS</span>
+        <h2 id="privacy-title">Seus dados apoiam suas escolhas</h2>
+        <div id="privacy-description" class="privacy-dialog-copy">
+          <p>A Bússola usa somente as respostas que você declara sobre seu momento, objetivo, disponibilidade e preferências.</p>
+          <p>Esses dados personalizam seu plano e as opções de apoio. Eles não são usados para classificar você, prever evasão ou limitar oportunidades.</p>
+          <p>Neste protótipo, as informações ficam salvas apenas neste navegador.</p>
+        </div>
+        <div class="dialog-actions">
+          <button class="primary-button" type="button" data-action="close-dialog" data-dialog-primary>Fechar</button>
+        </div>
+      </section>
+    </div>
   `;
 }
 
@@ -410,9 +483,31 @@ function render() {
       </main>
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    ${renderDialog()}
   `;
+  document.body.classList.toggle('dialog-open', Boolean(activeDialog));
   document.title = `${etapasMetodologia[state.etapa - 1].nome} — Bússola Vitru`;
   window.scrollTo({ top: 0, behavior: 'instant' });
+  if (activeDialog) requestAnimationFrame(() => document.querySelector('[data-dialog-primary]')?.focus());
+}
+
+function abrirDialog(dialog, supportId = null, returnTarget = null, focusSelector = null) {
+  activeDialog = dialog;
+  pendingSupportId = supportId;
+  dialogReturnTarget = returnTarget;
+  lastFocusSelector = focusSelector;
+  render();
+}
+
+function fecharDialog() {
+  const returnTarget = dialogReturnTarget;
+  const focusSelector = lastFocusSelector;
+  activeDialog = returnTarget;
+  pendingSupportId = null;
+  dialogReturnTarget = null;
+  lastFocusSelector = null;
+  render();
+  if (!activeDialog && focusSelector) requestAnimationFrame(() => document.querySelector(focusSelector)?.focus());
 }
 
 function irParaEtapa(etapa) {
@@ -443,6 +538,43 @@ document.addEventListener('click', (event) => {
   const actionButton = event.target.closest('[data-action]');
   if (!actionButton) return;
   const action = actionButton.dataset.action;
+
+  if (action === 'accept-consent') {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    fecharDialog();
+    return;
+  }
+  if (action === 'decline-consent') {
+    window.location.href = 'index.html';
+    return;
+  }
+  if (action === 'open-privacy') {
+    const openedFromConsent = activeDialog === 'consent';
+    abrirDialog('privacy', null, openedFromConsent ? 'consent' : null, openedFromConsent ? null : '.header-button[data-action="open-privacy"]');
+    return;
+  }
+  if (action === 'close-dialog') {
+    fecharDialog();
+    return;
+  }
+  if (action === 'request-support') {
+    abrirDialog('support', actionButton.dataset.supportId, null, `[data-support-id="${actionButton.dataset.supportId}"]`);
+    return;
+  }
+  if (action === 'confirm-support' && pendingSupportId) {
+    state.apoiosSelecionados = [...new Set([...state.apoiosSelecionados, pendingSupportId])];
+    salvarEstado();
+    fecharDialog();
+    mostrarToast('Apoio adicionado ao seu plano. Nenhum contato foi enviado.');
+    return;
+  }
+  if (action === 'remove-support') {
+    state.apoiosSelecionados = state.apoiosSelecionados.filter((id) => id !== actionButton.dataset.supportId);
+    salvarEstado();
+    render();
+    mostrarToast('Apoio removido do seu plano.');
+    return;
+  }
 
   if (action === 'previous') irParaEtapa(state.etapa - 1);
   if (action === 'next' && podeAvancar()) irParaEtapa(state.etapa + 1);
@@ -478,11 +610,6 @@ document.addEventListener('change', (event) => {
       ? [...new Set([...state.passosSelecionados, value])]
       : state.passosSelecionados.filter((id) => id !== value);
   }
-  if (name === 'apoio') {
-    state.apoiosSelecionados = checked
-      ? [...new Set([...state.apoiosSelecionados, value])]
-      : state.apoiosSelecionados.filter((id) => id !== value);
-  }
   if (name === 'dataAcao') state.dataAcao = value;
   salvarEstado();
   render();
@@ -499,3 +626,26 @@ document.addEventListener('input', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', render);
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && activeDialog && activeDialog !== 'consent') {
+    fecharDialog();
+    return;
+  }
+
+  if (event.key === 'Tab' && activeDialog) {
+    const dialog = document.querySelector('.bussola-dialog');
+    if (!dialog) return;
+    const focusable = [...dialog.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled])')];
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});

@@ -24,12 +24,12 @@ function render() {
   const dashboard = document.createElement('div');
   dashboard.className = 'dashboard';
 
-  // Botão Bússola (agora linka para página)
+  // Entrada fixa da Bússola no portal acadêmico.
   const bussolaBtn = document.createElement('a');
   bussolaBtn.className = 'btn-bussola';
   bussolaBtn.href = 'bussola.html';
-  bussolaBtn.innerHTML = '<strong>Bússola de Carreira</strong><span>Construa seu plano em 8 etapas</span>';
-  dashboard.appendChild(bussolaBtn);
+  bussolaBtn.setAttribute('aria-label', 'Abrir Bússola de Carreira para encontrar apoio');
+  bussolaBtn.innerHTML = '<strong>Bússola de Carreira</strong><span>Preciso de apoio</span>';
 
   // Top row - Gráficos
   const topRow = document.createElement('div');
@@ -49,6 +49,7 @@ function render() {
 
   main.appendChild(dashboard);
   app.appendChild(main);
+  app.appendChild(bussolaBtn);
 }
 
 document.addEventListener('DOMContentLoaded', render);
