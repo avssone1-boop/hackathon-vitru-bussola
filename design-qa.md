@@ -1,78 +1,53 @@
-# Design QA — Bússola Frontend v2
+# Design QA — integração premium da Bússola
 
 ## Fontes de verdade
 
-- Brief funcional e de conteúdo: `docs/referencias/BUSSOLA_CODEX_FRONTEND_BRIEF.md`.
-- Referência visual do produto anterior: `docs/referencias/bussola-metodologia-anterior.png` (1920 × 1250 px).
-- Implementação: `frontend/`, rota inicial `/#/onboarding`.
-- Comparação completa: `docs/evidencias/frontend-v2/comparacao-metodologia.png`.
-- Comparação focada na avaliação: `docs/evidencias/frontend-v2/comparacao-foco-assessment.png`.
+- Fonte visual selecionada: `docs/design/conceito-bussola-premium-opcao-3.png` (1487 × 1058 px).
+- Fonte funcional: `docs/referencias/BUSSOLA_CODEX_FRONTEND_BRIEF.md`.
+- Implementação: `frontend/`, rota `/#/result`.
+- Captura da implementação: `docs/evidencias/frontend-v3/resultado-integrado-desktop.jpg` (1265 × 712 px).
+- Comparação conjunta: `docs/evidencias/frontend-v3/comparacao-solucao-integrada.jpg` (1280 × 720 px).
 
-A imagem anterior foi usada como fonte para identidade, hierarquia tipográfica, superfícies, cores e nível de acabamento. A metodologia nela exibida não foi copiada porque o brief solicita explicitamente uma pergunta por página e baixa carga cognitiva.
+## Estado e normalização
 
-## Método de captura e comparação
+- Estado: perfil “Crescimento e transformação profissional”, fase atual “Explicar”.
+- Viewport CSS: 1280 × 720 px; área útil capturada pelo navegador: 1265 × 712 px; DPR 2.
+- A referência foi normalizada com `object-fit: contain` no mesmo painel da captura para comparação de composição, proporção, densidade e hierarquia.
+- Fonte e implementação também foram abertas separadamente em resolução original para verificar tipografia, bordas, ícones e pequenos textos.
+- Não foi necessário um recorte focado separado: o layout não usa imagem editorial, tabela densa ou detalhe de marca que dependa de comparação pixel a pixel; os elementos críticos permanecem legíveis nas capturas originais.
 
-- Desktop validado em viewport CSS de 1280 × 720 px, DPR 2; a área útil registrada pelo navegador foi 1265 × 712 px por causa das barras do viewport.
-- Mobile validado em viewport interna de 390 × 844 px e normalizado para 390 × 844 px.
-- A referência e as capturas da implementação foram abertas em resolução original e colocadas juntas na mesma superfície antes da avaliação visual.
-- Estados comparados: pergunta 1 selecionada, resultado calculado, home personalizada e assistente aberto.
+## Findings
 
-## Comparação por superfície
+Não restam diferenças P0, P1 ou P2 acionáveis.
 
-| Superfície | Resultado | Evidência |
+| Superfície obrigatória | Resultado | Evidência |
 |---|---|---|
-| Arquitetura da avaliação | Aprovado | O trilho lateral de oito etapas e o conjunto de perguntas simultâneas foram substituídos por uma pergunta por tela e progresso linear. |
-| Identidade Vitru | Aprovado | Branco, ameixa, lavanda e amarelo de precisão permanecem como base visual. |
-| Hierarquia | Aprovado | Pergunta, contexto, alternativas e ação aparecem em uma sequência de leitura única e calma. |
-| Cards de resposta | Aprovado | Áreas grandes, estado selecionado inequívoco, borda fina e sem caixas aninhadas. |
-| Tipografia | Aprovado | Inter, contraste de pesos e escala contemporânea preservados; nenhum texto abaixo de 12 px. |
-| Espaçamento | Aprovado | Ritmo de 4 px, largura de leitura controlada e respiro maior do que na tela anterior. |
-| Resultado | Aprovado | Perfil de apoio explicável, circunstancial e editável; quatro motivadores visíveis e recomendações relacionadas às respostas. |
-| Próximo passo | Aprovado | A devolutiva termina em uma ação concreta para a semana, sem prometer permanência. |
-| Home | Aprovado | Progresso, objetivo, próximas ações e perfil aparecem sem virar um dashboard de métricas. |
-| Assistente | Aprovado | Drawer contextual com sugestões e ações estruturadas; não reproduz uma interface genérica de chat. |
-| Responsividade | Aprovado | Cards empilham, CTA da avaliação fica acessível e o conteúdo não apresenta corte horizontal em 390 px. |
-| Ícones e ativos | Aprovado | Lucide usado de forma consistente; não há emojis, símbolos improvisados, SVGs falsos ou imagens genéricas. |
+| Fontes e tipografia | Aprovado | Inter, pesos editoriais, títulos de grande escala, labels em caixa alta e textos mínimos de 12 px preservam a hierarquia premium. |
+| Espaçamento e layout | Aprovado | Cabeçalho, trilho lateral, conteúdo principal, card de devolutiva e ritmo vertical reproduzem a composição da referência. |
+| Cores e tokens | Aprovado | Ameixa, branco, lavanda e amarelo de precisão foram mapeados para tokens existentes; sem gradientes ou sombras decorativas. |
+| Imagens e ativos | Aprovado | A fonte visual não exige fotografia ou ilustração; Lucide continua sendo usado para ícones funcionais e não há placeholders, emoji ou SVG artesanal. |
+| Copy e conteúdo | Aprovado | O conteúdo mudou de apoio genérico para perfil explicável e próximo passo porque o brief atual é a fonte funcional. A linguagem evita diagnóstico e previsão de evasão. |
+| Responsividade | Aprovado | Em 390 × 844 px, o trilho vira progresso “Fase 2 de 5”, os cards empilham e não há corte horizontal. |
+| Acessibilidade | Aprovado | Ordem semântica, `aria-current`, foco visível, controles de 44 px e `prefers-reduced-motion` preservados. |
+| Interações | Aprovado | Tarefa alternou para `aria-pressed=true`, o assistente abriu como diálogo e o console permaneceu sem erros. |
 
-## Ajustes realizados após as comparações
+## Histórico da comparação
 
-1. Remoção do trilho de oito etapas durante a avaliação para reduzir distração e reforçar uma pergunta por vez.
-2. Separação da jornada em entender → explicar → personalizar → agir → acompanhar.
-3. Correção de textos de 11 px para o mínimo de 12 px.
-4. Correção de controles de 42 px para o mínimo de 44 px.
-5. Inclusão de foco preso e retorno de foco nos diálogos de privacidade e no assistente.
-6. Preservação de respostas ao voltar, sem avanço automático depois da seleção.
-
-## Validação funcional e acessível
-
-- As dez perguntas foram concluídas no navegador; a URL acompanhou de `q=0` a `q=9`.
-- O estado sem resposta exibiu mensagem de validação antes de permitir avanço.
-- O fluxo completo onboarding → avaliação → processamento → resultado → primeiro passo → home foi concluído.
-- Seleção múltipla, escala, resposta opcional, checkbox de tarefa, privacidade e reinício foram exercitados.
-- O assistente exibiu sugestão, estado de digitação e duas ações estruturadas.
-- Diálogo de privacidade e assistente receberam foco inicial, ciclo de teclado e fechamento por `Esc`.
-- Todos os controles visíveis mediram pelo menos 44 px; foco visível e `prefers-reduced-motion` estão implementados.
-- Nenhum erro foi registrado no console durante o fluxo final.
-- TypeScript, build Vite, preparação do bundle e quatro testes do worker foram aprovados.
-
-## Evidências finais
-
-- `docs/evidencias/frontend-v2/assessment-desktop-1280x720.jpg`
-- `docs/evidencias/frontend-v2/resultado-desktop-1280x720.jpg`
-- `docs/evidencias/frontend-v2/home-assistente-desktop-1280x720.jpg`
-- `docs/evidencias/frontend-v2/assessment-mobile-390x844.jpg`
-- `docs/evidencias/frontend-v2/home-mobile-390x844.jpg`
+1. A versão funcional anterior preservava a paleta premium, mas não a anatomia principal da opção escolhida. O resultado ocupava uma coluna única, sem o trilho visual da jornada. A correção introduziu `JourneyRail` e `JourneyShell` com cinco fases metodológicas.
+2. O trilho antigo de oito etapas não foi restaurado. A avaliação continua com uma pergunta por tela; o novo trilho aparece somente em resultado, primeiro passo e acompanhamento.
+3. A primeira verificação mobile mostrou “Privacidade e dados” quebrando em duas linhas por causa do limite de 82 px. O limite foi removido e o controle passou a permanecer em uma linha a 390 px.
+4. O indicador amarelo da fase atual estava encostado na borda do painel. Foi movido para dentro do trilho para coincidir com a referência.
+5. A captura pós-correção foi comparada com a referência no arquivo `comparacao-solucao-integrada.jpg`.
 
 ## Diferenças intencionais
 
-- A navegação lateral anterior foi mantida apenas como histórico visual; ela não faz parte do assessment v2.
-- A nova avaliação usa dez perguntas curtas configuradas em dados, mas apenas uma pergunta é renderizada por tela.
-- Os quatro perfis representam necessidades de apoio e motivadores observados, não personalidades clínicas ou previsões de evasão.
-- O amarelo aparece como acento de orientação e progresso, não como decoração.
-- O protótipo usa dados demonstrativos e armazenamento local; nenhuma mensagem ou solicitação externa é enviada.
+- O trilho tem cinco fases — Entender, Explicar, Personalizar, Agir e Acompanhar — em vez das oito etapas do conceito antigo.
+- A área principal mostra o perfil de apoio e seus motivadores, não duas opções de atendimento, porque essa é a devolutiva definida pelo brief atual.
+- O perfil do estudante permanece Arthur Martins, consistente com os dados demonstrativos da aplicação.
+- O produto é apresentado como “Bússola · apoio à jornada”, evitando restringi-lo apenas à carreira.
 
-## Pendência não bloqueante
+## Follow-up polish
 
-- P3: o bundle principal gera aviso de 535,79 kB antes de gzip. Divisão por rota pode ser aplicada antes de produção, sem impacto no MVP validado.
+- P3: dividir o bundle principal por rota antes de produção para eliminar o aviso de 537,74 kB antes de gzip.
 
 final result: passed
