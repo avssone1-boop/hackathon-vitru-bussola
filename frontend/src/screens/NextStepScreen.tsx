@@ -1,6 +1,7 @@
 import { ArrowRight, CalendarCheck2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { NextStepCard } from "../components/student/NextStepCard";
+import { JourneyShell } from "../components/shell/JourneyShell";
 import { ObjectiveCard } from "../components/student/ObjectiveCard";
 import { Button } from "../components/ui/Button";
 import { student } from "../data/student";
@@ -17,7 +18,7 @@ export function NextStepScreen() {
   const { completedTasks, toggleTask } = useBussola();
   return (
     <main className="next-step-page">
-      <div className="next-step-container">
+      <JourneyShell current="act"><div className="next-step-container">
         <header className="next-step-heading">
           <span className="eyebrow">AGIR</span>
           <h1>Vamos transformar seu objetivo em um primeiro passo.</h1>
@@ -29,7 +30,7 @@ export function NextStepScreen() {
           <div className="step-list">{steps.map((step) => <NextStepCard key={step.id} {...step} completed={completedTasks.includes(step.id)} onToggle={toggleTask} />)}</div>
         </section>
         <footer className="next-step-footer"><p>Você não precisa resolver o semestre inteiro hoje.</p><Button asChild size="lg"><Link to="/home">Começar pela primeira atividade <ArrowRight size={19} /></Link></Button></footer>
-      </div>
+      </div></JourneyShell>
     </main>
   );
 }

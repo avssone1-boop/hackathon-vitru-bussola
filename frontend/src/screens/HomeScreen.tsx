@@ -2,6 +2,7 @@ import { ArrowRight, CheckCircle2, Compass, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CompassAssistant } from "../components/assistant/CompassAssistant";
+import { JourneyShell } from "../components/shell/JourneyShell";
 import { CourseProgress } from "../components/student/CourseProgress";
 import { ObjectiveCard } from "../components/student/ObjectiveCard";
 import { Button } from "../components/ui/Button";
@@ -26,7 +27,7 @@ export function HomeScreen() {
 
   return (
     <main className="home-page">
-      <div className="home-container">
+      <JourneyShell current="follow"><div className="home-container">
         <header className="home-heading"><div><span className="eyebrow">ACOMPANHAR</span><h1>Bom dia, {student.name}.</h1><p>Seu próximo passo está claro — e pode mudar quando precisar.</p></div><button type="button" className="reset-link" onClick={restart}><RotateCcw size={16} /> Refazer conversa inicial</button></header>
         <div className="home-primary-grid">
           <CourseProgress name={student.courseName} progress={student.courseProgress} />
@@ -41,7 +42,7 @@ export function HomeScreen() {
           <div><span className="eyebrow">BÚSSOLA</span><h2>Precisa reorganizar o próximo passo?</h2><p>Converse com o assistente sem perder o contexto do seu objetivo.</p></div>
           <Button onClick={() => setAssistantOpen(true)}>Pergunte ao Bússola <ArrowRight size={18} /></Button>
         </section>
-      </div>
+      </div></JourneyShell>
       <CompassAssistant open={assistantOpen} onClose={() => setAssistantOpen(false)} />
     </main>
   );

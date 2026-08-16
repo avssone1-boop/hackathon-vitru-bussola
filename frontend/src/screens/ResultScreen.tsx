@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { RecommendationList } from "../components/profile/RecommendationList";
+import { JourneyShell } from "../components/shell/JourneyShell";
 import { SupportProfileSummary } from "../components/profile/SupportProfileSummary";
 import { Button } from "../components/ui/Button";
 import { useBussola } from "../hooks/useBussola";
@@ -10,7 +11,7 @@ export function ResultScreen() {
   const { profile } = useBussola();
   return (
     <main className="result-page">
-      <div className="result-container">
+      <JourneyShell current="explain"><div className="result-container">
         <motion.header className="result-heading" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <span className="eyebrow">EXPLICAR</span>
           <h1>Suas respostas mostram o que parece ter mais peso agora.</h1>
@@ -27,7 +28,7 @@ export function ResultScreen() {
           <p>Você não precisa resolver o semestre inteiro hoje.</p>
           <Button asChild size="lg"><Link to="/next-step">Montar meu primeiro passo <ArrowRight size={19} /></Link></Button>
         </motion.footer>
-      </div>
+      </div></JourneyShell>
     </main>
   );
 }
