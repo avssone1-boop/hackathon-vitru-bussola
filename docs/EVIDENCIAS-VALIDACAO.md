@@ -1,6 +1,44 @@
 # Evidências de implementação e validação
 
-## Escopo validado
+## Frontend v2 — metodologia do brief
+
+Esta é a implementação atual. As seções de oito etapas abaixo documentam a versão estática anterior e permanecem no repositório apenas como histórico e comparação.
+
+| Verificação | Resultado |
+|---|---|
+| Entrada e consentimento informado | Aprovado; explica propósito, duração, personalização e limites antes de começar |
+| Assessment | Aprovado; dez perguntas, uma por tela, progresso visível e respostas preservadas |
+| Tipos de resposta | Aprovado; escolha única, múltipla, escala e texto opcional |
+| Devolutiva | Aprovada; um entre quatro perfis de apoio com motivadores, barreiras e explicação |
+| Primeiro passo | Aprovado; tarefa concreta, editável e concluível |
+| Home personalizada | Aprovada; progresso, objetivo, próximas ações e perfil sem excesso de métricas |
+| Assistente contextual | Aprovado; sugestões, digitação e ações estruturadas |
+| Privacidade e teclado | Aprovado; foco inicial, ciclo de foco, `Esc` e retorno de foco |
+| Alvos e legibilidade | Aprovado; controles com pelo menos 44 px e nenhum texto abaixo de 12 px |
+| Responsividade | Aprovada em 1280 × 720 e 390 × 844, sem corte horizontal |
+| Qualidade técnica | TypeScript, build Vite e 4/4 testes do worker aprovados; console sem erros |
+
+### Evidências da versão atual
+
+- [Assessment desktop](evidencias/frontend-v2/assessment-desktop-1280x720.jpg)
+- [Resultado desktop](evidencias/frontend-v2/resultado-desktop-1280x720.jpg)
+- [Home com assistente](evidencias/frontend-v2/home-assistente-desktop-1280x720.jpg)
+- [Assessment mobile](evidencias/frontend-v2/assessment-mobile-390x844.jpg)
+- [Home mobile](evidencias/frontend-v2/home-mobile-390x844.jpg)
+- [Comparação completa com a metodologia anterior](evidencias/frontend-v2/comparacao-metodologia.png)
+- [Comparação focada na avaliação](evidencias/frontend-v2/comparacao-foco-assessment.png)
+
+### Mudança metodológica comprovada
+
+| Antes | Agora |
+|---|---|
+| Várias perguntas simultâneas | Uma pergunta por tela |
+| Trilho permanente de oito etapas | Progresso linear e foco na tarefa atual |
+| Jornada centrada em plano de carreira | Entender → explicar → personalizar → agir → acompanhar |
+| Recomendações ao final do plano | Perfil de apoio explicável, ação concreta e home adaptada |
+| Navegação principalmente desktop | Fluxo mobile-first com CTA acessível |
+
+## Histórico — protótipo estático em oito etapas
 
 | Verificação | Resultado |
 |---|---|
