@@ -1,0 +1,16 @@
+{
+  "name": "bussola-backend",
+  "version": "1.0.0",
+  "description": "Backend da Bússola — permanência estudantil EAD com Google Cloud Datastore",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "@google-cloud/datastore": "9.1.0",
+    "cors": "2.8.5",
+    "express": "4.21.0",
+    "uuid": "10.0.0"
+  }
+}
