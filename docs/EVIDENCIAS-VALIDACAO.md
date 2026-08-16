@@ -1,5 +1,22 @@
 # Evidências de implementação e validação
 
+## Integração premium — metodologia atual + opção 3
+
+A direção visual selecionada foi aplicada às telas posteriores ao assessment sem reintroduzir a metodologia antiga. Resultado, primeiro passo e home agora usam um trilho de cinco fases; no mobile, o trilho é substituído por progresso compacto.
+
+| Critério | Resultado |
+|---|---|
+| Anatomia premium | Aprovada; cabeçalho, trilho lavanda, marcador amarelo, título editorial e superfícies agrupadas |
+| Metodologia atual | Preservada; uma pergunta por tela e cinco fases de apoio explicável |
+| Resultado | Aprovado; perfil, motivadores e recomendações continuam relacionados às respostas |
+| Primeiro passo | Aprovado; seleção de tarefa e estado concluído funcionam dentro do novo shell |
+| Home e assistente | Aprovados; acompanhamento e diálogo contextual continuam funcionais |
+| Mobile | Aprovado em 390 × 844; progresso compacto, cards empilhados e sem corte horizontal |
+| Console | Nenhum erro durante resultado, tarefa, home e abertura do assistente |
+
+- [Resultado integrado](evidencias/frontend-v3/resultado-integrado-desktop.jpg)
+- [Comparação com a opção premium escolhida](evidencias/frontend-v3/comparacao-solucao-integrada.jpg)
+
 ## Frontend v2 — metodologia do brief
 
 Esta é a implementação atual. As seções de oito etapas abaixo documentam a versão estática anterior e permanecem no repositório apenas como histórico e comparação.
